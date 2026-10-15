@@ -1,2 +1,39 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# ============================================================
+#  行尾与编码处理
+#
+#  注意：首次运行-安装到桌面.cmd 是 GBK + CRLF 编码的批处理脚本，
+#  仓库里的 Windows 批处理和那份 GBK 说明必须保持字节原样。
+#  用 -text 完全关掉 git 的行尾转换，避免 checkout 后被改成 LF
+#  导致 cmd 解析出错或中文乱码。
+# ============================================================
+
+*.cmd  -text
+*.bat  -text
+
+# GBK 编码的文本，同样禁止转换
+首次运行-安装到桌面.说明.txt -text
+README-NCM集成.md text eol=lf
+
+# 源码统一用 LF
+*.py   text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# 二进制
+*.png  binary
+*.ico  binary
+*.exe  binary
+*.dll  binary
+*.pyd  binary
+*.zip  binary
+*.ncm  binary
+*.mp3  binary
+*.flac binary
+
+# 统计时不要把生成的素材算进去
+docs/*.png linguist-generated
+icon-source.png linguist-generated
+ncm_glyphs.py linguist-generated
